@@ -20,12 +20,12 @@ while True:
             pygame.quit()
             exit()
 
-        screen.blit(sky_surface,(0,0))
-        screen.blit(ground_surface, (0,320))
-        screen.blit(text_surface, (300,20))
-        slime_x_pos -= 6
-        if slime_x_pos < -120: slime_x_pos = 800
-        screen.blit(slime_surface,(slime_x_pos,220))
+    screen.blit(sky_surface,(0,0))
+    screen.blit(ground_surface, (0,320))
+    screen.blit(text_surface, (300,20))
+    slime_x_pos -= 10
+    if slime_x_pos < -120: slime_x_pos = 800
+    screen.blit(slime_surface,(slime_x_pos,220))
 
-        pygame.display.update()
-        clock.tick(60)
+    pygame.display.update()
+    clock.tick(60)
