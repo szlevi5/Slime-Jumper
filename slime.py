@@ -7,25 +7,37 @@ pygame.display.set_caption("Slime Jumper")
 clock = pygame.time.Clock()
 test_font = pygame.font.Font("assets/font.ttf",50)
 
-sky_surface = pygame.image.load("assets/sky.jpg")
-ground_surface = pygame.image.load("assets/ground.jpg")
-text_surface = test_font.render("SCORE:",True,"black")
 
-slime_surface = pygame.image.load("assets/slime.jpg")
-slime_x_pos = 700
+
+sky_surf = pygame.image.load("assets/sky.jpg").convert_alpha()
+ground_surf = pygame.image.load("assets/ground.jpg").convert_alpha()
+text_surf = test_font.render("SCORE:",True,"black")
+
+enemy_surf = pygame.image.load("assets/slime.jpg").convert_alpha()
+enemy_rect = enemy_surf.get_rect(bottomright = (700,320))
+
+player_surf = pygame.image.load("assets/player.png").convert_alpha()
+player_rect = player_surf.get_rect(midbottom = (150,320))
+
 
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-
-    screen.blit(sky_surface,(0,0))
-    screen.blit(ground_surface, (0,320))
-    screen.blit(text_surface, (300,20))
-    slime_x_pos -= 10
-    if slime_x_pos < -120: slime_x_pos = 800
-    screen.blit(slime_surface,(slime_x_pos,220))
+    
+    #bakground#
+    screen.blit(sky_surf,(0,0))
+    screen.blit(ground_surf, (0,320))
+    screen.blit(text_surf, (300,20))
+    
+    #enemy#
+    enemy_rect.x -= 13
+    if enemy_rect.right <= 0: enemy_rect.left = 800
+    screen.blit(enemy_surf,enemy_rect)
+    
+    #player#
+    screen.blit(player_surf,player_rect)
 
     pygame.display.update()
     clock.tick(60)
